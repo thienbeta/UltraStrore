@@ -8,7 +8,7 @@ namespace UltraStrore.Services
 {
     public class SanPhamServices : ISanPhamServices
     {
-        public List<SanPham> sanpham = new List<SanPham>
+        public static List<SanPham> sanpham = new List<SanPham>
         {
             new SanPham
             {
@@ -192,7 +192,7 @@ namespace UltraStrore.Services
                 Example = false,
             },
         };
-        public List<HinhAnhSanPham> HinhAnhSanPhams = new List<HinhAnhSanPham>
+        public static List<HinhAnhSanPham> HinhAnhSanPhams = new List<HinhAnhSanPham>
         {
             new HinhAnhSanPham
             {
@@ -219,7 +219,6 @@ namespace UltraStrore.Services
                 Link = "https://content.pancake.vn/2-23/s2550x3600/2023/12/14/98a33459624269938a7797823e29e9bb04979da5.jpg"
             }
         };
-
         public async Task<List<SanPhamView>> ListSanPham(string id)
         {
             List<SanPhamView> listsp = new List<SanPhamView>();
@@ -251,6 +250,12 @@ namespace UltraStrore.Services
                 return listsp.OrderByDescending(g => g.NgayTao).ToList();
             }
             return listsp.Where(g => g.ID.Trim() == id.Trim()).ToList();
+        }
+
+        public async Task<List<SanPham>> SanPhamByID(string? id)
+        {
+            var ListSanPham = sanpham.Where(g => g.ID.Contains(id)).ToList();
+            return ListSanPham;
         }
     }
 }

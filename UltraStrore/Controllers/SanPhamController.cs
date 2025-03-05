@@ -22,5 +22,16 @@ namespace UltraStrore.Controllers
             var data = await this.services.ListSanPham(id);
             return Ok(data);
         }
+        [HttpGet("SanPhamByID")]
+        public async Task<IActionResult> SanPhamByID(string id)
+        {
+            var data = await this.services.SanPhamByID(id);
+            return Ok(data);
+        }
+        [HttpPost("NewSanPham")]
+        public async Task<IActionResult> NewSanPham()
+        {
+            return Ok();
+        }
     }
 }

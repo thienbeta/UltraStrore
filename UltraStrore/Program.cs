@@ -11,6 +11,7 @@ namespace UltraStrore
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddScoped<IGeminiServices, GeminiServices>();
+            builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddScoped<ISanPhamServices, SanPhamServices>();
             builder.Services.AddSingleton(resolver =>
                 resolver.GetRequiredService<IOptions<GeminiSettings>>().Value);

@@ -15,5 +15,6 @@ namespace UltraStrore.Data.Temp
         public DateOnly? NgayTao { get; set; }
         public int TrangThai { get; set; }
         public bool Example { get; set; }
+        public string? MoTa { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using UltraStrore.Utils;
 using UltraStrore.Services;
 using UltraStrore.Repository;
 
-namespace ProjectGSMAUI.Api.Controllers.HA
+namespace UltraStrore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
