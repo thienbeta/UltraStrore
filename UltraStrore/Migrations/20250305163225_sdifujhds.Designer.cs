@@ -12,8 +12,8 @@ using UltraStrore.Data;
 namespace UltraStrore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250305162357_DLSS")]
-    partial class DLSS
+    [Migration("20250305163225_sdifujhds")]
+    partial class sdifujhds
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

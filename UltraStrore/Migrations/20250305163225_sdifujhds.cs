@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UltraStrore.Migrations
 {
     /// <inheritdoc />
-    public partial class DLSS : Migration
+    public partial class sdifujhds : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
