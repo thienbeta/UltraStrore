@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UltraStrore.Data;
-
-public partial class ThuongHieu
+namespace UltraStrore.Data
 {
-    public string MaThuongHieu { get; set; } = null!;
+    public partial class ThuongHieu
+    {
+        public ThuongHieu()
+        {
+            SanPhams = new HashSet<SanPham>();
+        }
 
-    public string? TenThuongHieu { get; set; }
+        public string MaThuongHieu { get; set; } = null!;
+        public string? TenThuongHieu { get; set; }
 
-    public virtual ICollection<SanPham> SanPhams { get; set; } = new List<SanPham>();
+        public virtual ICollection<SanPham> SanPhams { get; set; }
+    }
 }
