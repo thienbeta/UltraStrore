@@ -5,13 +5,9 @@ namespace UltraStrore.Data
 {
     public partial class GioHang
     {
-        public GioHang()
-        {
-            ChiTietGioHangs = new HashSet<ChiTietGioHang>();
-        }
 
         public int MaGioHang { get; set; }
-        public string? MaNguoiDung { get; set; }
+        public int? MaNguoiDung { get; set; }
 
         public virtual NguoiDung? MaNguoiDungNavigation { get; set; }
         public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }

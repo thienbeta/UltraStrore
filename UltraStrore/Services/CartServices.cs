@@ -19,12 +19,12 @@ namespace UltraStrore.Services
         {
             new KhachHang
             {
-                MaNguoiDung="KH001",
+                MaNguoiDung= 1,
                 TenTaiKhoan="User",
                 MatKhau="123456"
             }
         };      
-        public async Task<GioHangView> GioHangViews(string MaKhachHang)
+        public async Task<GioHangView> GioHangViews(int MaKhachHang)
         {
             GioHangView GioHangView = new GioHangView();
             var GioHang =_context.GioHangs.Where(g=>g.MaNguoiDung==MaKhachHang).FirstOrDefault();

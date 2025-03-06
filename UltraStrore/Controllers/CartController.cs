@@ -22,7 +22,7 @@ namespace UltraStrore.Controllers
             return Ok(data);
         }
         [HttpGet("GioHangByKhachHang")]
-        public async Task<IActionResult> GioHangByKhachHang(string id)
+        public async Task<IActionResult> GioHangByKhachHang(int id)
         {
             var data = await this.services.GioHangViews(id);
             return Ok(data);

@@ -7,7 +7,7 @@ namespace UltraStrore.Repository
     {
         Task<List<BinhLuanView>> ListBinhLuan();
         Task<BinhLuan> AddBinhLuan(BinhLuan binhLuan);
-        Task<BinhLuan> UpdateBinhLuan(string maBinhLuan, BinhLuan binhLuan);
-        Task<bool> DeleteBinhLuan(string maBinhLuan);
+        Task<BinhLuan> UpdateBinhLuan(int maBinhLuan, BinhLuan binhLuan);
+        Task<bool> DeleteBinhLuan(int maBinhLuan);
     }
 }

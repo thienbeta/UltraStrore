@@ -22,10 +22,12 @@ namespace UltraStrore.Services
             List<SanPhamView> listsp = new List<SanPhamView>();
             var nhomSanPham = _context.SanPhams.GroupBy(s => s.MaSanPham.Substring(0, 6)).ToList();
 
+
+
             foreach (var nhom in nhomSanPham)
             {
                 var sanPhamDauTien = nhom.First();
-                var HinhAnhSanPhamList = _context.HinhAnhs.Where(g => g.MaSanPham.Substring(0, 6) == sanPhamDauTien.MaSanPham.Substring(0, 6)).Select(g => g.Link).ToList();
+                var HinhAnhSanPhamList = _context.HinhAnhs.Where(g => g.MaSanPham.Substring(0, 6) == sanPhamDauTien.MaSanPham.Substring(0, 6)).Select(g => g.TenHinhAnh).ToList();
                 var listMauSac = nhom.Select(sp => sp.MaSanPham.Split('_')[1]).Distinct().ToList();
                 var listKichThuoc = nhom.Select(sp => sp.MaSanPham.Split('_')[2]).Distinct().ToList();
                 var tongSoLuong = nhom.Sum(sp => sp.SoLuong);
@@ -42,7 +44,7 @@ namespace UltraStrore.Services
                     DonGia = sanPhamDauTien.Gia ?? 0,
                     LoaiSanPham = TenLoai,
                     ThuongHieu = ThuongHieu,
-                    NgayTao = sanPhamDauTien.NgayTao,
+                    NgayTao = DateTime.Now,
                     TrangThai = sanPhamDauTien.TrangThai,
                 });
             }
@@ -68,7 +70,7 @@ namespace UltraStrore.Services
             foreach (var nhom in nhomSanPham)
             {
                 var sanPhamDauTien = nhom.First();
-                var HinhAnhSanPhamList = _context.HinhAnhs.Where(g => g.MaSanPham.Substring(0, 6) == sanPhamDauTien.MaSanPham.Substring(0, 6)).Select(g => g.Link).ToList();
+                var HinhAnhSanPhamList = _context.HinhAnhs.Where(g => g.MaSanPham.Substring(0, 6) == sanPhamDauTien.MaSanPham.Substring(0, 6)).Select(g => g.TenHinhAnh).ToList();
                 var listMauSac = sanPhamDauTien.MaSanPham.Split('_')[1];
                 List<SanPhamEditDetail> detailedit = new List<SanPhamEditDetail>();
                 foreach(var item in nhom)

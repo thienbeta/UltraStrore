@@ -10,8 +10,7 @@ namespace UltraStrore.Data
         public string? MaSanPham { get; set; }
         public int? SoLuong { get; set; }
 
-
-
-    public virtual ComBoSanPham? MaComBoNavigation { get; set; }
+        public virtual ComBoSanPham? MaComBoNavigation { get; set; }
+        public virtual SanPham? MaSanPhamNavigation { get; set; }
     }
 }

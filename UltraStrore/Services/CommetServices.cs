@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+
 namespace UltraStrore.Services
 {
     public class CommetServices : ICommetServices
@@ -12,9 +13,9 @@ namespace UltraStrore.Services
         // Danh sách bình luận tĩnh (giả lập cơ sở dữ liệu)
         public static List<BinhLuan> binhluan = new List<BinhLuan>
         {
-            new BinhLuan { MaBinhLuan = "BL001", MaSanPham = "SP001", MaNguoiDung = "ND001", NoiDungBinhLuan = "Sản phẩm rất tuyệt vời!", SoBinhLuan = 5, DanhGia = 4.5 },
-            new BinhLuan { MaBinhLuan = "BL002", MaSanPham = "SP002", MaNguoiDung = "ND002", NoiDungBinhLuan = "Chất lượng kém hơn tôi nghĩ.", SoBinhLuan = 2, DanhGia = 2.0 },
-            new BinhLuan { MaBinhLuan = "BL003", MaSanPham = "SP003", MaNguoiDung = "ND003", NoiDungBinhLuan = "Giá trị tuyệt vời!", SoBinhLuan = 8, DanhGia = 5.0 }
+            new BinhLuan { MaBinhLuan = 1, MaSanPham = "SP001", MaNguoiDung = 1, NoiDungBinhLuan = "Sản phẩm rất tuyệt vời!", SoTimBinhLuan = 5, DanhGia = 4.5 },
+            new BinhLuan { MaBinhLuan = 2, MaSanPham = "SP002", MaNguoiDung = 2, NoiDungBinhLuan = "Chất lượng kém hơn tôi nghĩ.", SoTimBinhLuan = 2, DanhGia = 2.0 },
+            new BinhLuan { MaBinhLuan = 3, MaSanPham = "SP003", MaNguoiDung = 3, NoiDungBinhLuan = "Giá trị tuyệt vời!", SoTimBinhLuan = 8, DanhGia = 5.0 }
         };
 
         public async Task<List<BinhLuanView>> ListBinhLuan()
@@ -25,7 +26,7 @@ namespace UltraStrore.Services
                 MaSanPham = bl.MaSanPham,
                 MaNguoiDung = bl.MaNguoiDung,
                 NoiDungBinhLuan = bl.NoiDungBinhLuan,
-                SoBinhLuan = bl.SoBinhLuan,
+                SoTimBinhLuan = bl.SoTimBinhLuan,
                 DanhGia = bl.DanhGia
             }).ToList();
 
@@ -38,7 +39,7 @@ namespace UltraStrore.Services
             return await Task.FromResult(binhLuan);
         }
 
-        public async Task<BinhLuan> UpdateBinhLuan(string maBinhLuan, BinhLuan binhLuan)
+        public async Task<BinhLuan> UpdateBinhLuan(int maBinhLuan, BinhLuan binhLuan)
         {
             var existingBinhLuan = binhluan.FirstOrDefault(bl => bl.MaBinhLuan == maBinhLuan);
             if (existingBinhLuan == null)
@@ -49,13 +50,13 @@ namespace UltraStrore.Services
             existingBinhLuan.MaSanPham = binhLuan.MaSanPham;
             existingBinhLuan.MaNguoiDung = binhLuan.MaNguoiDung;
             existingBinhLuan.NoiDungBinhLuan = binhLuan.NoiDungBinhLuan;
-            existingBinhLuan.SoBinhLuan = binhLuan.SoBinhLuan;
+            existingBinhLuan.SoTimBinhLuan = binhLuan.SoTimBinhLuan;
             existingBinhLuan.DanhGia = binhLuan.DanhGia;
 
             return await Task.FromResult(existingBinhLuan);
         }
 
-        public async Task<bool> DeleteBinhLuan(string maBinhLuan)
+        public async Task<bool> DeleteBinhLuan(int maBinhLuan)
         {
             var binhLuanToRemove = binhluan.FirstOrDefault(bl => bl.MaBinhLuan == maBinhLuan);
             if (binhLuanToRemove == null)

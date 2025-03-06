@@ -5,8 +5,8 @@ namespace UltraStrore.Data
 {
     public partial class DanhSachDiaChi
     {
-        public string MaDiaChi { get; set; } = null!;
-        public string? MaNguoiDung { get; set; }
+        public int MaDiaChi { get; set; }
+        public int? MaNguoiDung { get; set; }
         public string? HoTen { get; set; }
         public string? Sdt { get; set; }
         public string? MoTa { get; set; }

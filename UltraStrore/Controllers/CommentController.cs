@@ -46,7 +46,7 @@ namespace UltraStrore.Controllers
 
         // Sửa bình luận
         [HttpPut("update/{maBinhLuan}")]
-        public async Task<ActionResult<BinhLuan>> UpdateBinhLuan(string maBinhLuan, [FromBody] BinhLuan binhLuan)
+        public async Task<ActionResult<BinhLuan>> UpdateBinhLuan(int maBinhLuan, [FromBody] BinhLuan binhLuan)
         {
             if (binhLuan == null || maBinhLuan != binhLuan.MaBinhLuan)
             {
@@ -64,7 +64,7 @@ namespace UltraStrore.Controllers
 
         // Xóa bình luận
         [HttpDelete("delete/{maBinhLuan}")]
-        public async Task<ActionResult> DeleteBinhLuan(string maBinhLuan)
+        public async Task<ActionResult> DeleteBinhLuan(int maBinhLuan)
         {
             var result = await _commetServices.DeleteBinhLuan(maBinhLuan);
             if (!result)
