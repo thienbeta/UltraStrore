@@ -5,7 +5,7 @@ namespace UltraStrore.Data;
 
 public partial class ThuongHieu
 {
-    public string MaThuongHieu { get; set; } = null!;
+    public int MaThuongHieu { get; set; }
 
     public string? TenThuongHieu { get; set; }
 

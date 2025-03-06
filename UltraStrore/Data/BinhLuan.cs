@@ -14,9 +14,7 @@ public partial class BinhLuan
     public string? NoiDungBinhLuan { get; set; }
 
     public int? SoBinhLuan { get; set; }
-
     public double? DanhGia { get; set; }
-
     public virtual ICollection<HinhAnh> HinhAnhs { get; set; } = new List<HinhAnh>();
 
     public virtual SanPham? MaSanPhamNavigation { get; set; }

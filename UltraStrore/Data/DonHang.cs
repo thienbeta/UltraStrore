@@ -5,7 +5,7 @@ namespace UltraStrore.Data;
 
 public partial class DonHang
 {
-    public string MaDonHang { get; set; } = null!;
+    public int MaDonHang { get; set; }
 
     public string? MaNguoiDung { get; set; }
 

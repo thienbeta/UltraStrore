@@ -15,13 +15,15 @@ public partial class SanPham
 
     public string? MaComBo { get; set; }
 
-    public string? MaThuongHieu { get; set; }
+    public int? MaThuongHieu { get; set; }
 
-    public string? MaLoaiSanPham { get; set; }
+    public int? MaLoaiSanPham { get; set; }
 
     public string? KichThuoc { get; set; }
 
     public DateOnly? NgayTao { get; set; }
+
+    public int? TrangThai { get; set; }
 
     public bool? Example { get; set; }
 
@@ -29,7 +31,9 @@ public partial class SanPham
 
     public virtual ICollection<BinhLuan> BinhLuans { get; set; } = new List<BinhLuan>();
 
-    public virtual ICollection<ChiTietComBo> ChiTietComBos { get; set; } = new List<ChiTietComBo>();
+    public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();
+
+    public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; } = new List<ChiTietGioHang>();
 
     public virtual ICollection<HinhAnh> HinhAnhs { get; set; } = new List<HinhAnh>();
 

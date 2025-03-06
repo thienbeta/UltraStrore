@@ -22,4 +22,6 @@ public partial class ComBoSanPham
     public virtual ICollection<ChiTietComBo> ChiTietComBos { get; set; } = new List<ChiTietComBo>();
 
     public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();
+
+    public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; } = new List<ChiTietGioHang>();
 }

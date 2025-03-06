@@ -13,7 +13,7 @@ namespace UltraStrore
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
- throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<IGeminiServices, GeminiServices>();
             builder.Services.AddScoped<ICartServices, CartServices>();
@@ -23,6 +23,7 @@ namespace UltraStrore
             builder.Services.Configure<GeminiSettings>(
                 builder.Configuration.GetSection("Authentication"));
             builder.Services.AddControllers();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             // Định nghĩa chính sách CORS

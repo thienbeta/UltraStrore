@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using UltraStrore.Data.Temp;
+using UltraStrore.Data;
+using UltraStrore.Helper;
+using UltraStrore.Models.EditModels;
 using UltraStrore.Models.ViewModels;
 using UltraStrore.Repository;
 
@@ -8,254 +10,95 @@ namespace UltraStrore.Services
 {
     public class SanPhamServices : ISanPhamServices
     {
-        public static List<SanPham> sanpham = new List<SanPham>
+        private readonly ApplicationDbContext _context;
+
+        public SanPhamServices(ApplicationDbContext context)
         {
-            new SanPham
-            {
-                ID = "A00001_ff0000_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = true,
-            },
-             new SanPham
-            {
-                ID = "A00001_0000ff_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-              new SanPham
-            {
-                ID = "A00001_00ff00_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-               new SanPham
-            {
-                ID = "A00001_000000_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-            new SanPham
-            {
-                ID = "A00001_ffffff_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1, 
-                Example = false,
-            },
-             new SanPham
-            {
-                ID = "A00001_ff00ff_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1, 
-                Example = false,
-            },
-              new SanPham
-            {
-                ID = "A00001_ffff00_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-               new SanPham
-            {
-                ID = "A00001_00ffff_XL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-               new SanPham
-            {
-                ID = "A00001_000000_X",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "X",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1, 
-                Example = false,
-            },
-                new SanPham
-            {
-                ID = "A00001_000000_XXL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XXL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-                new SanPham
-            {
-                ID = "A00001_000000_XXXL",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XXXL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-                new SanPham
-            {
-                ID = "A00001_000000_M",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "M",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-                new SanPham
-            {
-                ID = "A00001_000000_S",
-                Name = "Áo thun nam",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "S",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },new SanPham
-            {
-                ID = "A00002_00ffff_XL",
-                Name = "Áo thun nữ",
-                MaThuongHieu = 1,
-                LoaiSanPham = 1,
-                KichThuoc = "XL",
-                SoLuong = 100,
-                DonGia = 150000,
-                NgayTao = DateOnly.FromDateTime(DateTime.Now),
-                TrangThai = 1,
-                Example = false,
-            },
-        };
-        public static List<HinhAnhSanPham> HinhAnhSanPhams = new List<HinhAnhSanPham>
-        {
-            new HinhAnhSanPham
-            {
-                ID=1,
-                MaSanPham = "A00001_ff0000_XL",
-                Link = "https://media3.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2024/33333.5.jpg"
-            },
-            new HinhAnhSanPham
-            {
-                ID=2,
-                MaSanPham = "A00001_00ff00_XL",
-                Link = "https://media3.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2024/33333.5.jpg"
-            },
-            new HinhAnhSanPham
-            {
-                ID=3,
-                MaSanPham = "A00001_0000ff_XL",
-                Link = "https://media3.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2024/33333.5.jpg"
-            },
-            new HinhAnhSanPham
-            {
-                ID=4,
-                MaSanPham = "A00002_00ffff_XL",
-                Link = "https://content.pancake.vn/2-23/s2550x3600/2023/12/14/98a33459624269938a7797823e29e9bb04979da5.jpg"
-            }
-        };
+            _context = context;
+        }
+
         public async Task<List<SanPhamView>> ListSanPham(string id)
         {
             List<SanPhamView> listsp = new List<SanPhamView>();
-            var nhomSanPham = sanpham.GroupBy(s => s.ID.Substring(0, 6)).ToList();
+            var nhomSanPham = _context.SanPhams.GroupBy(s => s.MaSanPham.Substring(0, 6)).ToList();
 
             foreach (var nhom in nhomSanPham)
             {
                 var sanPhamDauTien = nhom.First();
-                var HinhAnhSanPhamList = HinhAnhSanPhams.Where(g => g.MaSanPham.Substring(0,6) == sanPhamDauTien.ID.Substring(0, 6)).Select(g => g.Link).ToList();
-                var listMauSac = nhom.Select(sp => sp.ID.Split('_')[1]).Distinct().ToList();
-                var listKichThuoc = nhom.Select(sp => sp.ID.Split('_')[2]).Distinct().ToList();
+                var HinhAnhSanPhamList = _context.HinhAnhs.Where(g => g.MaSanPham.Substring(0, 6) == sanPhamDauTien.MaSanPham.Substring(0, 6)).Select(g => g.Link).ToList();
+                var listMauSac = nhom.Select(sp => sp.MaSanPham.Split('_')[1]).Distinct().ToList();
+                var listKichThuoc = nhom.Select(sp => sp.MaSanPham.Split('_')[2]).Distinct().ToList();
                 var tongSoLuong = nhom.Sum(sp => sp.SoLuong);
+                var TenLoai = _context.LoaiSanPhams.Where(g => g.MaLoaiSanPham == sanPhamDauTien.MaLoaiSanPham).Select(g => g.TenLoaiSanPham).FirstOrDefault();
+                var ThuongHieu = _context.ThuongHieus.Where(g => g.MaThuongHieu == sanPhamDauTien.MaThuongHieu).Select(g => g.TenThuongHieu).FirstOrDefault();
                 listsp.Add(new SanPhamView
                 {
-                    ID = sanPhamDauTien.ID.Substring(0,6),
-                    Name = sanPhamDauTien.Name,
+                    ID = sanPhamDauTien.MaSanPham.Substring(0, 6),
+                    Name = sanPhamDauTien.TenSanPham,
                     MauSac = listMauSac,
                     KichThuoc = listKichThuoc,
                     Hinh = HinhAnhSanPhamList,
-                    SoLuong = tongSoLuong,
-                    DonGia = sanPhamDauTien.DonGia,
-                    LoaiSanPham = "Áo thun",
-                    ThuongHieu = "Gucci",
-                    NgayTao = sanPhamDauTien.NgayTao
+                    SoLuong = tongSoLuong ?? 0,
+                    DonGia = sanPhamDauTien.Gia ?? 0,
+                    LoaiSanPham = TenLoai,
+                    ThuongHieu = ThuongHieu,
+                    NgayTao = sanPhamDauTien.NgayTao,
+                    TrangThai = sanPhamDauTien.TrangThai,
                 });
             }
-            if(string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 return listsp.OrderByDescending(g => g.NgayTao).ToList();
             }
             return listsp.Where(g => g.ID.Trim() == id.Trim()).ToList();
         }
+    
 
         public async Task<List<SanPham>> SanPhamByID(string? id)
         {
-            var ListSanPham = sanpham.Where(g => g.ID.Contains(id)).ToList();
+           
+            var ListSanPham = _context.SanPhams.Where(g => g.MaSanPham.Contains(id)).ToList();
             return ListSanPham;
+            
+        }
+        public async Task<List<SanPhamByIDSorted>> SanPhamByIDSorteds (string? id)
+        {
+            List<SanPhamByIDSorted> listsp = new List<SanPhamByIDSorted>();
+            var nhomSanPham = _context.SanPhams.Where(g=>g.MaSanPham.Contains(id)).GroupBy(s => s.MaSanPham.Substring(0, 13)).ToList();
+            foreach (var nhom in nhomSanPham)
+            {
+                var sanPhamDauTien = nhom.First();
+                var HinhAnhSanPhamList = _context.HinhAnhs.Where(g => g.MaSanPham.Substring(0, 6) == sanPhamDauTien.MaSanPham.Substring(0, 6)).Select(g => g.Link).ToList();
+                var listMauSac = sanPhamDauTien.MaSanPham.Split('_')[1];
+                List<SanPhamEditDetail> detailedit = new List<SanPhamEditDetail>();
+                foreach(var item in nhom)
+                {
+                    SanPhamEditDetail ed = new SanPhamEditDetail();
+                    ed.KichThuoc = item.KichThuoc;
+                    ed.SoLuong = item.SoLuong??0;
+                    ed.Gia = item.Gia?? 0;
+                    detailedit.Add(ed);
+                }    
+                var tongSoLuong = nhom.Sum(sp => sp.SoLuong);
+                var MaLoai = sanPhamDauTien.MaLoaiSanPham;
+                var ThuongHieu = sanPhamDauTien.MaThuongHieu;
+                listsp.Add(new SanPhamByIDSorted
+                {
+                    ID = sanPhamDauTien.MaSanPham.Substring(0, 13),
+                    TenSanPham = sanPhamDauTien.TenSanPham,
+                    MauSac = listMauSac,                   
+                    LoaiSanPham = MaLoai,
+                    MaThuongHieu = ThuongHieu,
+                    Details = detailedit,
+                });
+            }
+            return listsp;
+
+        }
+        public async Task<APIResponse> EditSanPham(List<SanPhamEdit> data)
+        {
+            APIResponse response = new APIResponse();
+            return response;
         }
     }
 }

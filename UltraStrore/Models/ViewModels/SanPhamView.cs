@@ -12,5 +12,6 @@
         public List<string>? MauSac {  get; set; }
         public List<string>? Hinh { get; set; }
         public DateOnly? NgayTao { get; set; }
+        public int? TrangThai { get; set; }
     }
 }

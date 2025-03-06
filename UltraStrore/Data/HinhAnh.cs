@@ -9,6 +9,8 @@ public partial class HinhAnh
 
     public string? TenHinhAnh { get; set; }
 
+    public string? Link { get; set; }
+
     public string? MaSanPham { get; set; }
 
     public int? MaBinhLuan { get; set; }

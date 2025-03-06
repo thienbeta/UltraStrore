@@ -5,7 +5,7 @@ namespace UltraStrore.Data;
 
 public partial class ChiTietGioHang
 {
-    public string MaCtgh { get; set; } = null!;
+    public int MaCtgh { get; set; }
 
     public int? MaGioHang { get; set; }
 
@@ -19,5 +19,9 @@ public partial class ChiTietGioHang
 
     public int? ThanhTien { get; set; }
 
+    public virtual ComBoSanPham? MaComboNavigation { get; set; }
+
     public virtual GioHang? MaGioHangNavigation { get; set; }
+
+    public virtual SanPham? MaSanPhamNavigation { get; set; }
 }

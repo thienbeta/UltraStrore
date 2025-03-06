@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using UltraStrore.Data.Temp;
 
 namespace UltraStrore.Data;
 
@@ -53,9 +54,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("BINH_LUAN");
 
-            entity.Property(e => e.MaBinhLuan)
-                .ValueGeneratedNever()
-                .HasColumnName("ma_binh_luan");
+            entity.HasIndex(e => e.MaSanPham, "IX_BINH_LUAN_ma_san_pham");
+
+            entity.Property(e => e.MaBinhLuan).HasColumnName("ma_binh_luan");
             entity.Property(e => e.DanhGia).HasColumnName("danh_gia");
             entity.Property(e => e.MaNguoiDung)
                 .HasMaxLength(10)
@@ -81,9 +82,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("CHI_TIET_COM_BO");
 
-            entity.Property(e => e.MaChiTietComBo)
-                .ValueGeneratedNever()
-                .HasColumnName("ma_chi_tiet_com_bo");
+            entity.HasIndex(e => e.MaComBo, "IX_CHI_TIET_COM_BO_ma_com_bo");
+
+            entity.Property(e => e.MaChiTietComBo).HasColumnName("ma_chi_tiet_com_bo");
             entity.Property(e => e.MaComBo).HasColumnName("ma_com_bo");
             entity.Property(e => e.MaSanPham)
                 .HasMaxLength(20)
@@ -94,10 +95,6 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.MaComBoNavigation).WithMany(p => p.ChiTietComBos)
                 .HasForeignKey(d => d.MaComBo)
                 .HasConstraintName("FK_CHI_TIET_COM_BO_COM_BO_SAN_PHAM");
-
-            entity.HasOne(d => d.MaSanPhamNavigation).WithMany(p => p.ChiTietComBos)
-                .HasForeignKey(d => d.MaSanPham)
-                .HasConstraintName("FK_CHI_TIET_COM_BO_SAN_PHAM");
         });
 
         modelBuilder.Entity<ChiTietDonHang>(entity =>
@@ -106,10 +103,11 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("CHI_TIET_DON_HANG");
 
-            entity.Property(e => e.MaCtdh)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_ctdh");
+            entity.HasIndex(e => e.MaCombo, "IX_CHI_TIET_DON_HANG_ma_combo");
+
+            entity.HasIndex(e => e.MaSanPham, "IX_CHI_TIET_DON_HANG_ma_san_pham");
+
+            entity.Property(e => e.MaCtdh).HasColumnName("ma_ctdh");
             entity.Property(e => e.Gia).HasColumnName("gia");
             entity.Property(e => e.MaCombo).HasColumnName("ma_combo");
             entity.Property(e => e.MaDonHang)
@@ -117,7 +115,7 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("ma_don_hang");
             entity.Property(e => e.MaSanPham)
-                .HasMaxLength(10)
+                .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("ma_san_pham");
             entity.Property(e => e.SoLuong).HasColumnName("so_luong");
@@ -126,6 +124,10 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.MaComboNavigation).WithMany(p => p.ChiTietDonHangs)
                 .HasForeignKey(d => d.MaCombo)
                 .HasConstraintName("FK_CHI_TIET_DON_HANG_COM_BO_SAN_PHAM");
+
+            entity.HasOne(d => d.MaSanPhamNavigation).WithMany(p => p.ChiTietDonHangs)
+                .HasForeignKey(d => d.MaSanPham)
+                .HasConstraintName("FK_CHI_TIET_DON_HANG_SAN_PHAM");
         });
 
         modelBuilder.Entity<ChiTietGioHang>(entity =>
@@ -134,10 +136,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("CHI_TIET_GIO_HANG");
 
-            entity.Property(e => e.MaCtgh)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_ctgh");
+            entity.HasIndex(e => e.MaGioHang, "IX_CHI_TIET_GIO_HANG_ma_gio_hang");
+
+            entity.Property(e => e.MaCtgh).HasColumnName("ma_ctgh");
             entity.Property(e => e.Gia).HasColumnName("gia");
             entity.Property(e => e.MaCombo).HasColumnName("ma_combo");
             entity.Property(e => e.MaGioHang).HasColumnName("ma_gio_hang");
@@ -148,9 +149,17 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.SoLuong).HasColumnName("so_luong");
             entity.Property(e => e.ThanhTien).HasColumnName("thanh_tien");
 
+            entity.HasOne(d => d.MaComboNavigation).WithMany(p => p.ChiTietGioHangs)
+                .HasForeignKey(d => d.MaCombo)
+                .HasConstraintName("FK_CHI_TIET_GIO_HANG_COM_BO_SAN_PHAM");
+
             entity.HasOne(d => d.MaGioHangNavigation).WithMany(p => p.ChiTietGioHangs)
                 .HasForeignKey(d => d.MaGioHang)
                 .HasConstraintName("FK_CHI_TIET_GIO_HANG_GIO_HANG");
+
+            entity.HasOne(d => d.MaSanPhamNavigation).WithMany(p => p.ChiTietGioHangs)
+                .HasForeignKey(d => d.MaSanPham)
+                .HasConstraintName("FK_CHI_TIET_GIO_HANG_SAN_PHAM");
         });
 
         modelBuilder.Entity<ComBoSanPham>(entity =>
@@ -160,7 +169,7 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("COM_BO_SAN_PHAM");
 
             entity.Property(e => e.MaComBo)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ma_com_bo");
             entity.Property(e => e.MoTa)
                 .HasMaxLength(255)
@@ -182,10 +191,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("DANH_SACH_DIA_CHI");
 
-            entity.Property(e => e.MaDiaChi)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_dia_chi");
+            entity.HasIndex(e => e.MaNguoiDung, "IX_DANH_SACH_DIA_CHI_ma_nguoi_dung");
+
+            entity.Property(e => e.MaDiaChi).HasColumnName("ma_dia_chi");
             entity.Property(e => e.DiaChi)
                 .HasMaxLength(255)
                 .HasColumnName("dia_chi");
@@ -215,10 +223,11 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("DON_HANG");
 
-            entity.Property(e => e.MaDonHang)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_don_hang");
+            entity.HasIndex(e => e.MaNguoiDung, "IX_DON_HANG_ma_nguoi_dung");
+
+            entity.HasIndex(e => e.MaNhanVien, "IX_DON_HANG_ma_nhan_vien");
+
+            entity.Property(e => e.MaDonHang).HasColumnName("ma_don_hang");
             entity.Property(e => e.DiaChi)
                 .HasMaxLength(255)
                 .HasColumnName("dia_chi");
@@ -262,9 +271,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("GIO_HANG");
 
-            entity.Property(e => e.MaGioHang)
-                .ValueGeneratedNever()
-                .HasColumnName("ma_gio_hang");
+            entity.HasIndex(e => e.MaNguoiDung, "IX_GIO_HANG_ma_nguoi_dung");
+
+            entity.Property(e => e.MaGioHang).HasColumnName("ma_gio_hang");
             entity.Property(e => e.MaNguoiDung)
                 .HasMaxLength(10)
                 .IsUnicode(false)
@@ -281,9 +290,11 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("HINH_ANH");
 
-            entity.Property(e => e.MaHinhAnh)
-                .ValueGeneratedNever()
-                .HasColumnName("ma_hinh_anh");
+            entity.HasIndex(e => e.MaBinhLuan, "IX_HINH_ANH_ma_binh_luan");
+
+            entity.HasIndex(e => e.MaSanPham, "IX_HINH_ANH_ma_san_pham");
+
+            entity.Property(e => e.MaHinhAnh).HasColumnName("ma_hinh_anh");
             entity.Property(e => e.MaBinhLuan).HasColumnName("ma_binh_luan");
             entity.Property(e => e.MaSanPham)
                 .HasMaxLength(20)
@@ -308,10 +319,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("LOAI_SAN_PHAM");
 
-            entity.Property(e => e.MaLoaiSanPham)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_loai_san_pham");
+            entity.Property(e => e.MaLoaiSanPham).HasColumnName("ma_loai_san_pham");
             entity.Property(e => e.TenLoaiSanPham)
                 .HasMaxLength(100)
                 .HasColumnName("ten_loai_san_pham");
@@ -342,14 +350,16 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.HoTen)
                 .HasMaxLength(100)
                 .HasColumnName("ho_ten");
-            entity.Property(e => e.MaLa)
+            entity.Property(e => e.MoTa)
                 .HasMaxLength(10)
                 .IsUnicode(false)
-                .HasColumnName("ma_la");
+                .HasColumnName("mo_ta");
             entity.Property(e => e.MatKhau)
-                .HasMaxLength(50)
+                .HasMaxLength(255)
                 .HasColumnName("mat_khau");
-            entity.Property(e => e.NgayKy).HasColumnName("ngay_ky");
+            entity.Property(e => e.TaiKhoan)
+            .HasMaxLength(50).HasColumnName("tai_khoan");
+            entity.Property(e => e.NgayDangKy).HasColumnName("ngay_dang_ky");
             entity.Property(e => e.NgaySinh).HasColumnName("ngay_sinh");
             entity.Property(e => e.Sdt)
                 .HasMaxLength(15)
@@ -388,6 +398,10 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("SAN_PHAM");
 
+            entity.HasIndex(e => e.MaLoaiSanPham, "IX_SAN_PHAM_ma_loai_san_pham");
+
+            entity.HasIndex(e => e.MaThuongHieu, "IX_SAN_PHAM_ma_thuong_hieu");
+
             entity.Property(e => e.MaSanPham)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -402,14 +416,8 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("ma_com_bo");
-            entity.Property(e => e.MaLoaiSanPham)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_loai_san_pham");
-            entity.Property(e => e.MaThuongHieu)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_thuong_hieu");
+            entity.Property(e => e.MaLoaiSanPham).HasColumnName("ma_loai_san_pham");
+            entity.Property(e => e.MaThuongHieu).HasColumnName("ma_thuong_hieu");
             entity.Property(e => e.MoTa)
                 .HasMaxLength(150)
                 .HasColumnName("mo_ta");
@@ -434,10 +442,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("THUONG_HIEU");
 
-            entity.Property(e => e.MaThuongHieu)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_thuong_hieu");
+            entity.Property(e => e.MaThuongHieu).HasColumnName("ma_thuong_hieu");
             entity.Property(e => e.TenThuongHieu)
                 .HasMaxLength(100)
                 .HasColumnName("ten_thuong_hieu");
@@ -449,10 +454,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("VIDEO");
 
-            entity.Property(e => e.MaVideo)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_video");
+            entity.HasIndex(e => e.MaSanPham, "IX_VIDEO_ma_san_pham");
+
+            entity.Property(e => e.MaVideo).HasColumnName("ma_video");
             entity.Property(e => e.MaSanPham)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -498,10 +502,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.ToTable("YEU_THICH");
 
-            entity.Property(e => e.MaYeuThich)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("ma_yeu_thich");
+            entity.HasIndex(e => e.MaSanPham, "IX_YEU_THICH_ma_san_pham");
+
+            entity.Property(e => e.MaYeuThich).HasColumnName("ma_yeu_thich");
             entity.Property(e => e.MaNguoiDung)
                 .HasMaxLength(10)
                 .IsUnicode(false)
@@ -517,7 +520,196 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.MaSanPham)
                 .HasConstraintName("FK_YEU_THICH_SAN_PHAM");
         });
-
+        modelBuilder.Entity<ThuongHieu>().HasData(
+            new ThuongHieu
+            {
+                MaThuongHieu = 1,
+                TenThuongHieu = "Gucci"
+            }
+            );
+        modelBuilder.Entity<LoaiSanPham>().HasData(
+            new LoaiSanPham
+            {
+                MaLoaiSanPham = 1,
+                TenLoaiSanPham = "Áo"
+            });
+        modelBuilder.Entity<SanPham>().HasData(
+           new SanPham
+           {
+               MaSanPham = "A00001_ff0000_XL",
+               TenSanPham = "Áo thun nam",
+               MaThuongHieu = 1,
+               MaLoaiSanPham = 1,
+               KichThuoc = "XL",
+               SoLuong = 100,
+               Gia = 150000,
+               NgayTao = DateOnly.FromDateTime(DateTime.Now),
+               TrangThai = 1,
+               Example = true,
+           },
+            new SanPham
+            {
+                MaSanPham = "A00001_ff0000_XXL",
+                TenSanPham = "Áo thun nam",
+                MaThuongHieu = 1,
+                MaLoaiSanPham = 1,
+                KichThuoc = "XL",
+                SoLuong = 100,
+                Gia = 150000,
+                NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                TrangThai = 1,
+                Example = true,
+            },
+             new SanPham
+             {
+                 MaSanPham = "A00001_ff0000_M",
+                 TenSanPham = "Áo thun nam",
+                 MaThuongHieu = 1,
+                 MaLoaiSanPham = 1,
+                 KichThuoc = "XL",
+                 SoLuong = 100,
+                 Gia = 150000,
+                 NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                 TrangThai = 1,
+                 Example = true,
+             },
+              new SanPham
+              {
+                  MaSanPham = "A00001_ff00ff_XL",
+                  TenSanPham = "Áo thun nam",
+                  MaThuongHieu = 1,
+                  MaLoaiSanPham = 1,
+                  KichThuoc = "XL",
+                  SoLuong = 100,
+                  Gia = 150000,
+                  NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                  TrangThai = 1,
+                  Example = true,
+              },
+               new SanPham
+               {
+                   MaSanPham = "A00001_ff00ff_M",
+                   TenSanPham = "Áo thun nam",
+                   MaThuongHieu = 1,
+                   MaLoaiSanPham = 1,
+                   KichThuoc = "XL",
+                   SoLuong = 100,
+                   Gia = 150000,
+                   NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                   TrangThai = 1,
+                   Example = true,
+               },
+                new SanPham
+                {
+                    MaSanPham = "A00002_ff0000_XL",
+                    TenSanPham = "Áo thun nam",
+                    MaThuongHieu = 1,
+                    MaLoaiSanPham = 1,
+                    KichThuoc = "XL",
+                    SoLuong = 100,
+                    Gia = 150000,
+                    NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                    TrangThai = 1,
+                    Example = true,
+                },
+                 new SanPham
+                 {
+                     MaSanPham = "A00002_ff0000_XXL",
+                     TenSanPham = "Áo thun nam",
+                     MaThuongHieu = 1,
+                     MaLoaiSanPham = 1,
+                     KichThuoc = "XL",
+                     SoLuong = 100,
+                     Gia = 150000,
+                     NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                     TrangThai = 1,
+                     Example = true,
+                 },
+                  new SanPham
+                  {
+                      MaSanPham = "A00002_ff00ff_XL",
+                      TenSanPham = "Áo thun nam",
+                      MaThuongHieu = 1,
+                      MaLoaiSanPham = 1,
+                      KichThuoc = "XL",
+                      SoLuong = 100,
+                      Gia = 150000,
+                      NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                      TrangThai = 1,
+                      Example = true,
+                  },
+                  new SanPham
+                  {
+                      MaSanPham = "A00002_ff00ff_M",
+                      TenSanPham = "Áo thun nam",
+                      MaThuongHieu = 1,
+                      MaLoaiSanPham = 1,
+                      KichThuoc = "XL",
+                      SoLuong = 100,
+                      Gia = 150000,
+                      NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                      TrangThai = 1,
+                      Example = true,
+                  }
+            );
+        modelBuilder.Entity<HinhAnh>().HasData(
+             new HinhAnh
+             {
+                 MaHinhAnh = 1,
+                 MaSanPham = "A00001_ff0000_XL",
+                 Link = "https://media3.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2024/33333.5.jpg"
+             },
+             new HinhAnh
+             {
+                 MaHinhAnh = 2,
+                 MaSanPham = "A00002_ff0000_XL",
+                 Link = "https://content.pancake.vn/2-23/s2550x3600/2023/12/14/98a33459624269938a7797823e29e9bb04979da5.jpg"
+             }
+            );
+        modelBuilder.Entity<GioHang>().HasData(
+              new GioHang
+              {
+                  MaGioHang = 1,
+                  MaNguoiDung = "KH001"
+              });
+        modelBuilder.Entity<ChiTietGioHang>().HasData(
+            new ChiTietGioHang 
+            {
+                MaCtgh = 1,
+                MaGioHang = 1,
+                MaSanPham = "A00001_ff00ff_XL",
+                MaCombo = null,
+                SoLuong = 2,
+                Gia = 150000,
+                ThanhTien = 300000,
+            },
+             new ChiTietGioHang
+             {
+                 MaCtgh = 2,
+                 MaGioHang = 1,
+                 MaSanPham = "A00002_ff00ff_XL",
+                 MaCombo = null,
+                 SoLuong = 3,
+                 Gia = 150000,
+                 ThanhTien = 450000,
+             }
+            );
+        modelBuilder.Entity<NguoiDung>().HasData(
+            new NguoiDung
+            {
+                MaNguoiDung="KH001",
+                TaiKhoan="User",
+                HoTen ="Embo",
+                NgaySinh = new DateOnly(1999,5,19),
+                Sdt ="0973713274",
+                Cccd = "066099000137",
+                Email = "nguyenquangquyX@gmail.com",
+                DiaChi = "Here",
+                TrangThai = true,
+                HinhAnh = "https://safebooru.org//samples/3406/sample_a1935b4ae3f6684ef51e29de9fcbe0cabe608620.jpg?3543495",
+                MatKhau = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+                NgayDangKy = DateOnly.FromDateTime(DateTime.Now)
+            });
         OnModelCreatingPartial(modelBuilder);
     }
 

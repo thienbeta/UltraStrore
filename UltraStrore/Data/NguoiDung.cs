@@ -18,6 +18,7 @@ public partial class NguoiDung
     public string? Email { get; set; }
 
     public string? DiaChi { get; set; }
+    public string? TaiKhoan { get; set; }
 
     public string? MatKhau { get; set; }
 
@@ -25,9 +26,9 @@ public partial class NguoiDung
 
     public string? HinhAnh { get; set; }
 
-    public DateOnly? NgayKy { get; set; }
+    public DateOnly? NgayDangKy { get; set; }
 
-    public string? MaLa { get; set; }
+    public string? MoTa { get; set; }
 
     public virtual ICollection<DanhSachDiaChi> DanhSachDiaChis { get; set; } = new List<DanhSachDiaChi>();
 

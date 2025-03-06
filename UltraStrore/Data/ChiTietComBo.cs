@@ -14,6 +14,4 @@ public partial class ChiTietComBo
     public int? SoLuong { get; set; }
 
     public virtual ComBoSanPham? MaComBoNavigation { get; set; }
-
-    public virtual SanPham? MaSanPhamNavigation { get; set; }
 }
