@@ -5,9 +5,10 @@ namespace UltraStrore.Data
 {
     public partial class Video
     {
-        public string MaVideo { get; set; } = null!;
+         public int MaVideo { get; set; }
         public string? TenVideo { get; set; }
         public string? MaSanPham { get; set; }
+   
 
         public virtual SanPham? MaSanPhamNavigation { get; set; }
     }

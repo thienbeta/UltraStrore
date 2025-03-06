@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UltraStrore.Data.Temp;
+using UltraStrore.Models.EditModels;
 using UltraStrore.Repository;
 
 namespace UltraStrore.Controllers
@@ -32,6 +33,18 @@ namespace UltraStrore.Controllers
         public async Task<IActionResult> NewSanPham()
         {
             return Ok();
+        }
+        [HttpGet("SanPhamByIDSorted")]
+        public async Task<IActionResult> SanPhamByIDSorted(string? id)
+        {
+            var data = await this.services.SanPhamByIDSorteds(id);
+            return Ok(data);
+        }
+        [HttpPost("EditSanPham")]
+        public async Task<IActionResult> EditSanPham([FromBody]List<SanPhamEdit> info)
+        {
+            var data = await this.services.EditSanPham(info);
+            return Ok(data);
         }
     }
 }

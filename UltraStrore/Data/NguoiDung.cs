@@ -18,6 +18,7 @@ namespace UltraStrore.Data
             Sdt = "0367219692";
             Cccd = "1066205015270";
             Email = "quang@gmail.com";
+            TaiKhoan = "khachhang123";
             DiaChi = "22 giải phóng, Buôn ma thuật";
             MatKhau = "khachhang123";
             TrangThai = 0;  // 0 Là khách hàng  1 là admin 2 là nhân viên
@@ -33,6 +34,7 @@ namespace UltraStrore.Data
                 Sdt = "0997219692",
                 Cccd = "066205015290",
                 Email = "tue@gmail.com",
+                TaiKhoan = "nhanvien123";
                 DiaChi = "22 tan an, Buôn ma thuat",
                 MatKhau = "nhanvien123",
                 TrangThai = 2,
@@ -49,6 +51,7 @@ namespace UltraStrore.Data
                 Sdt = "0987654321",
                 Cccd = "066654321012",
                 Email = "trung@gmail.com",
+                TaiKhoan = "admin123";
                 DiaChi = "33 tay nguyen, Buôn ma thuật",
                 MatKhau = "admin123",
                 TrangThai = 1,
@@ -64,6 +67,7 @@ namespace UltraStrore.Data
         public string? Sdt { get; set; }
         public string? Cccd { get; set; }
         public string? Email { get; set; }
+        public string? TaiKhoan { get; set; }
         public string? DiaChi { get; set; }
         public string? MatKhau { get; set; }
         public int? TrangThai { get; set; }

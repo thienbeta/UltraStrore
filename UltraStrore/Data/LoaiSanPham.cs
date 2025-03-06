@@ -3,14 +3,12 @@ using System.Collections.Generic;
 
 namespace UltraStrore.Data
 {
+
     public partial class LoaiSanPham
     {
-        public LoaiSanPham()
-        {
-            SanPhams = new HashSet<SanPham>();
-        }
+       
 
-        public string MaLoaiSanPham { get; set; } = null!;
+        public int? MaLoaiSanPham { get; set; } = null!;
         public string? TenLoaiSanPham { get; set; }
 
         public virtual ICollection<SanPham> SanPhams { get; set; }
