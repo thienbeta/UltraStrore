@@ -5,7 +5,7 @@ namespace UltraStrore.Repository
 {
     public interface ICommetServices
     {
-        Task<List<BinhLuanView>> ListBinhLuan(string? ma);
+        Task<List<BinhLuanView>> ListBinhLuan();
         Task<BinhLuan> AddBinhLuan(BinhLuan binhLuan);
         Task<BinhLuan> UpdateBinhLuan(string maBinhLuan, BinhLuan binhLuan);
         Task<bool> DeleteBinhLuan(string maBinhLuan);

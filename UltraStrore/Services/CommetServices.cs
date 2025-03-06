@@ -17,9 +17,9 @@ namespace UltraStrore.Services
             new BinhLuan { MaBinhLuan = "BL003", MaSanPham = "SP003", MaNguoiDung = "ND003", NoiDungBinhLuan = "Giá trị tuyệt vời!", SoBinhLuan = 8, DanhGia = 5.0 }
         };
 
-        public async Task<List<BinhLuanView>> ListBinhLuan(string? ma)
+        public async Task<List<BinhLuanView>> ListBinhLuan()
         {
-            var result = binhluan.Where(bl => bl.MaSanPham == ma).Select(bl => new BinhLuanView
+            var result = binhluan.Select(bl => new BinhLuanView
             {
                 MaBinhLuan = bl.MaBinhLuan,
                 MaSanPham = bl.MaSanPham,

@@ -19,14 +19,14 @@ namespace UltraStrore.Controllers
             _commetServices = commetServices;
         }
 
-        // Liệt kê danh sách bình luận theo mã sản phẩm
-        [HttpGet("list/{ma}")]
-        public async Task<ActionResult<List<BinhLuanView>>> ListBinhLuan(string ma)
+        // Liệt kê tất cả danh sách bình luận
+        [HttpGet("list")]
+        public async Task<ActionResult<List<BinhLuanView>>> ListBinhLuan()
         {
-            var binhLuans = await _commetServices.ListBinhLuan(ma);
+            var binhLuans = await _commetServices.ListBinhLuan();
             if (binhLuans == null || binhLuans.Count == 0)
             {
-                return NotFound("Không tìm thấy bình luận cho sản phẩm này.");
+                return NotFound("Không tìm thấy bình luận nào.");
             }
             return Ok(binhLuans);
         }
