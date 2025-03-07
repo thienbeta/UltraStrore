@@ -22,6 +22,11 @@ namespace UltraStrore.Data
         public DateTime? NgayTao { get; set; }
         public string? MoTa { get; set; }
 
+        public int? CancelConunt { get; set; }
+
+        public DateTime? LockoutEndDate { get; set; }
+
+
         public virtual ICollection<DanhSachDiaChi> DanhSachDiaChis { get; set; }
         public virtual ICollection<DonHang> DonHangMaNguoiDungNavigations { get; set; }
         public virtual ICollection<DonHang> DonHangMaNhanVienNavigations { get; set; }
