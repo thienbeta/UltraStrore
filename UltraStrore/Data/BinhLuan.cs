@@ -13,6 +13,7 @@ namespace UltraStrore.Data
         public string? NoiDungBinhLuan { get; set; }
         public int? SoTimBinhLuan { get; set; }
         public double? DanhGia { get; set; }
+        public int? TrangThai { get; set; }
 
         public virtual SanPham? MaSanPhamNavigation { get; set; }
         public virtual ICollection<HinhAnh> HinhAnhs { get; set; }

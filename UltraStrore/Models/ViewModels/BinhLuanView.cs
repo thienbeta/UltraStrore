@@ -10,5 +10,7 @@ namespace UltraStrore.Models.ViewModels
         public string? NoiDungBinhLuan { get; set; }
         public int? SoTimBinhLuan { get; set; }
         public double? DanhGia { get; set; }
+        public int? TrangThai { get; set; }
+
     }
 }
