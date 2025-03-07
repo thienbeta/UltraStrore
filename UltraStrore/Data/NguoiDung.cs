@@ -16,6 +16,7 @@ namespace UltraStrore.Data
         public string? TaiKhoan { get; set; }
         public string? DiaChi { get; set; }
         public string? MatKhau { get; set; }
+        public int? VaiTro { get; set; }
         public int? TrangThai { get; set; }
         public string? HinhAnh { get; set; }
         public DateTime? NgayTao { get; set; }

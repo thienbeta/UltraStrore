@@ -12,6 +12,5 @@ namespace UltraStrore.Models.EditModels
         public string? MauSac { get; set; }
         public List<SanPhamEditDetail>? Details { get; set; }
         public List<HinhAnh>? HinhAnhs { get; set; }
-        
     }
 }
