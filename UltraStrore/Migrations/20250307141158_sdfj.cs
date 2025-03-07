@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UltraStrore.Migrations
 {
     /// <inheritdoc />
-    public partial class sdfsdf : Migration
+    public partial class sdfj : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,8 +46,7 @@ namespace UltraStrore.Migrations
                 name: "NGUOI_DUNG",
                 columns: table => new
                 {
-                    ma_nguoi_dung = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ma_nguoi_dung = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ho_ten = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     ngay_sinh = table.Column<DateTime>(type: "date", nullable: true),
                     sdt = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
@@ -56,6 +55,7 @@ namespace UltraStrore.Migrations
                     TaiKhoan = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     dia_chi = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     mat_khau = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    VaiTro = table.Column<int>(type: "int", nullable: true),
                     trang_thai = table.Column<int>(type: "int", nullable: true),
                     hinh_anh = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     ngay_tao = table.Column<DateTime>(type: "date", nullable: true),
@@ -127,7 +127,7 @@ namespace UltraStrore.Migrations
                 {
                     ma_dia_chi = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ma_nguoi_dung = table.Column<int>(type: "int", nullable: true),
+                    ma_nguoi_dung = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ho_ten = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     sdt = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     mo_ta = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
@@ -150,8 +150,8 @@ namespace UltraStrore.Migrations
                 {
                     ma_don_hang = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ma_nguoi_dung = table.Column<int>(type: "int", nullable: true),
-                    ma_nhan_vien = table.Column<int>(type: "int", nullable: true),
+                    ma_nguoi_dung = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ma_nhan_vien = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ngay_dat = table.Column<DateTime>(type: "date", nullable: true),
                     trang_thai_don_hang = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     trang_thai_hang = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -181,7 +181,7 @@ namespace UltraStrore.Migrations
                 {
                     ma_gio_hang = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ma_nguoi_dung = table.Column<int>(type: "int", nullable: true)
+                    ma_nguoi_dung = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -232,7 +232,7 @@ namespace UltraStrore.Migrations
                     ma_binh_luan = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ma_san_pham = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    ma_nguoi_dung = table.Column<int>(type: "int", unicode: false, maxLength: 10, nullable: true),
+                    ma_nguoi_dung = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
                     noi_dung_binh_luan = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     so_tim_binh_luan = table.Column<int>(type: "int", nullable: true),
                     danh_gia = table.Column<double>(type: "float", nullable: true),
@@ -332,10 +332,10 @@ namespace UltraStrore.Migrations
                     ma_yeu_thich = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ma_san_pham = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    ma_nguoi_dung = table.Column<int>(type: "int", nullable: true),
+                    ma_nguoi_dung = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     so_luong_yeu_thich = table.Column<int>(type: "int", nullable: true),
                     ngay_yeu_thich = table.Column<DateTime>(type: "date", nullable: true),
-                    MaNguoiDungNavigationMaNguoiDung = table.Column<int>(type: "int", nullable: true)
+                    MaNguoiDungNavigationMaNguoiDung = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {

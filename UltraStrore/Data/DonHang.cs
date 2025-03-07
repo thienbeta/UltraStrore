@@ -6,8 +6,8 @@ namespace UltraStrore.Data
     public partial class DonHang
     {
         public int MaDonHang { get; set; }
-        public int? MaNguoiDung { get; set; }
-        public int? MaNhanVien { get; set; }
+        public string? MaNguoiDung { get; set; }
+        public string? MaNhanVien { get; set; }
         public DateTime? NgayDat { get; set; }
         public string? TrangThaiDonHang { get; set; }
         public string? TrangThaiHang { get; set; }

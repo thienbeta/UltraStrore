@@ -8,6 +8,6 @@ namespace UltraStrore.Repository
     public interface ICartServices
     {
         Task<APIResponse> ThemSanPham(ChiTietGioHangSanPhamCreate info);
-        Task<GioHangView> GioHangViews(int MaKhachHang);
+        Task<GioHangView> GioHangViews(string MaKhachHang);
     }
 }

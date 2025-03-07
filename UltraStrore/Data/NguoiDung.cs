@@ -7,7 +7,7 @@ namespace UltraStrore.Data
     {
 
 
-        public int? MaNguoiDung { get; set; }
+        public string? MaNguoiDung { get; set; }
         public string? HoTen { get; set; }
         public DateTime? NgaySinh { get; set; }
         public string? Sdt { get; set; }

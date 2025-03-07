@@ -6,7 +6,7 @@ namespace UltraStrore.Models.ViewModels
     {
         public int? MaBinhLuan { get; set; }
         public string? MaSanPham { get; set; }
-        public int? MaNguoiDung { get; set; }
+        public string? MaNguoiDung { get; set; }
         public string? NoiDungBinhLuan { get; set; }
         public int? SoTimBinhLuan { get; set; }
         public double? DanhGia { get; set; }
