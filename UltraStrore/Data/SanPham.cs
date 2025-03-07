@@ -16,7 +16,7 @@ namespace UltraStrore.Data
         public int? MaLoaiSanPham { get; set; }
         public string? KichThuoc { get; set; }
         public DateTime? NgayTao { get; set; }
-        public bool? ChatLieu { get; set; }
+        public string? ChatLieu { get; set; }
         public string? MoTa { get; set; }
         public int? TrangThai { get; set; }
 

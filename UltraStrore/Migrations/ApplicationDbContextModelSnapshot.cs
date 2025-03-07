@@ -25,8 +25,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.BinhLuan", b =>
                 {
                     b.Property<int>("MaBinhLuan")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_binh_luan");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaBinhLuan"));
 
                     b.Property<double?>("DanhGia")
                         .HasColumnType("float")
@@ -51,7 +54,10 @@ namespace UltraStrore.Migrations
 
                     b.Property<int?>("SoTimBinhLuan")
                         .HasColumnType("int")
-                        .HasColumnName("so_binh_luan");
+                        .HasColumnName("so_tim_binh_luan");
+
+                    b.Property<int?>("TrangThai")
+                        .HasColumnType("int");
 
                     b.HasKey("MaBinhLuan")
                         .HasName("PK__BINH_LUA__300DD2D899CEB418");
@@ -64,8 +70,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.ChiTietComBo", b =>
                 {
                     b.Property<int>("MaChiTietComBo")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_chi_tiet_com_bo");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaChiTietComBo"));
 
                     b.Property<int?>("MaComBo")
                         .HasColumnType("int")
@@ -94,8 +103,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.ChiTietDonHang", b =>
                 {
                     b.Property<int>("MaCtdh")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_ctdh");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaCtdh"));
 
                     b.Property<int?>("Gia")
                         .HasColumnType("int")
@@ -136,8 +148,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.ChiTietGioHang", b =>
                 {
                     b.Property<int>("MaCtgh")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_ctgh");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaCtgh"));
 
                     b.Property<int?>("Gia")
                         .HasColumnType("int")
@@ -180,8 +195,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.ComBoSanPham", b =>
                 {
                     b.Property<int>("MaComBo")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_com_bo");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaComBo"));
 
                     b.Property<string>("MoTa")
                         .HasMaxLength(255)
@@ -219,8 +237,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.DanhSachDiaChi", b =>
                 {
                     b.Property<int>("MaDiaChi")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_dia_chi");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaDiaChi"));
 
                     b.Property<string>("DiaChi")
                         .HasMaxLength(255)
@@ -261,8 +282,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.DonHang", b =>
                 {
                     b.Property<int>("MaDonHang")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_don_hang");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaDonHang"));
 
                     b.Property<string>("DiaChi")
                         .HasMaxLength(255)
@@ -319,8 +343,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.GioHang", b =>
                 {
                     b.Property<int>("MaGioHang")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_gio_hang");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaGioHang"));
 
                     b.Property<int?>("MaNguoiDung")
                         .HasColumnType("int")
@@ -337,8 +364,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.HinhAnh", b =>
                 {
                     b.Property<int>("MaHinhAnh")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_hinh_anh");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaHinhAnh"));
 
                     b.Property<int?>("MaBinhLuan")
                         .HasColumnType("int")
@@ -368,8 +398,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.LoaiSanPham", b =>
                 {
                     b.Property<int>("MaLoaiSanPham")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_loai_san_pham");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaLoaiSanPham"));
 
                     b.Property<string>("TenLoaiSanPham")
                         .HasMaxLength(100)
@@ -385,8 +418,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.NguoiDung", b =>
                 {
                     b.Property<int>("MaNguoiDung")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_nguoi_dung");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaNguoiDung"));
 
                     b.Property<string>("Cccd")
                         .HasMaxLength(20)
@@ -457,8 +493,8 @@ namespace UltraStrore.Migrations
                         .HasColumnType("varchar(20)")
                         .HasColumnName("ma_san_pham");
 
-                    b.Property<bool?>("ChatLieu")
-                        .HasColumnType("bit")
+                    b.Property<string>("ChatLieu")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("chat_lieu");
 
                     b.Property<int?>("Gia")
@@ -520,8 +556,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.ThuongHieu", b =>
                 {
                     b.Property<int>("MaThuongHieu")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_thuong_hieu");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaThuongHieu"));
 
                     b.Property<string>("TenThuongHieu")
                         .HasMaxLength(100)
@@ -537,8 +576,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.Video", b =>
                 {
                     b.Property<int>("MaVideo")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_video");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaVideo"));
 
                     b.Property<string>("MaSanPham")
                         .HasMaxLength(20)
@@ -610,8 +652,11 @@ namespace UltraStrore.Migrations
             modelBuilder.Entity("UltraStrore.Data.YeuThich", b =>
                 {
                     b.Property<int>("MaYeuThich")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ma_yeu_thich");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaYeuThich"));
 
                     b.Property<int?>("MaNguoiDung")
                         .HasColumnType("int")

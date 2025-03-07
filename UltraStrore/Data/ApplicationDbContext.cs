@@ -55,7 +55,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaSanPham, "IX_BINH_LUAN_ma_san_pham");
 
                 entity.Property(e => e.MaBinhLuan)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_binh_luan");
 
                 entity.Property(e => e.DanhGia).HasColumnName("danh_gia");
@@ -74,7 +74,7 @@ namespace UltraStrore.Data
                     .HasMaxLength(255)
                     .HasColumnName("noi_dung_binh_luan");
 
-                entity.Property(e => e.SoTimBinhLuan).HasColumnName("so_binh_luan");
+                entity.Property(e => e.SoTimBinhLuan).HasColumnName("so_tim_binh_luan");
 
                 entity.HasOne(d => d.MaSanPhamNavigation)
                     .WithMany(p => p.BinhLuans)
@@ -94,7 +94,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaSanPham, "IX_CHI_TIET_COM_BO_ma_san_pham");
 
                 entity.Property(e => e.MaChiTietComBo)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_chi_tiet_com_bo");
 
                 entity.Property(e => e.MaComBo).HasColumnName("ma_com_bo");
@@ -127,7 +127,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaCombo, "IX_CHI_TIET_DON_HANG_ma_combo");
 
                 entity.Property(e => e.MaCtdh)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("ma_ctdh");
 
                 entity.Property(e => e.Gia).HasColumnName("gia");
@@ -168,7 +168,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaSanPham, "IX_CHI_TIET_GIO_HANG_ma_san_pham");
 
                 entity.Property(e => e.MaCtgh)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("ma_ctgh");
 
                 entity.Property(e => e.Gia).HasColumnName("gia");
@@ -210,7 +210,7 @@ namespace UltraStrore.Data
                 entity.ToTable("COM_BO_SAN_PHAM");
 
                 entity.Property(e => e.MaComBo)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("ma_com_bo");
 
                 entity.Property(e => e.MoTa)
@@ -242,7 +242,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaNguoiDung, "IX_DANH_SACH_DIA_CHI_ma_nguoi_dung");
 
                 entity.Property(e => e.MaDiaChi)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_dia_chi");
 
                 entity.Property(e => e.DiaChi)
@@ -283,7 +283,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaNhanVien, "IX_DON_HANG_ma_nhan_vien");
 
                 entity.Property(e => e.MaDonHang)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_don_hang");
 
                 entity.Property(e => e.DiaChi)
@@ -339,7 +339,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaNguoiDung, "IX_GIO_HANG_ma_nguoi_dung");
 
                 entity.Property(e => e.MaGioHang)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_gio_hang");
 
                 entity.Property(e => e.MaNguoiDung).HasColumnName("ma_nguoi_dung");
@@ -362,7 +362,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaSanPham, "IX_HINH_ANH_ma_san_pham");
 
                 entity.Property(e => e.MaHinhAnh)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_hinh_anh");
 
                 entity.Property(e => e.MaBinhLuan).HasColumnName("ma_binh_luan");
@@ -395,7 +395,7 @@ namespace UltraStrore.Data
                 entity.ToTable("LOAI_SAN_PHAM");
 
                 entity.Property(e => e.MaLoaiSanPham)
-                    .ValueGeneratedNever()
+                  .ValueGeneratedOnAdd()
                     .HasColumnName("ma_loai_san_pham");
 
                 entity.Property(e => e.TenLoaiSanPham)
@@ -411,7 +411,7 @@ namespace UltraStrore.Data
                 entity.ToTable("NGUOI_DUNG");
 
                 entity.Property(e => e.MaNguoiDung)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("ma_nguoi_dung");
 
                 entity.Property(e => e.Cccd)
@@ -526,7 +526,7 @@ namespace UltraStrore.Data
                 entity.ToTable("THUONG_HIEU");
 
                 entity.Property(e => e.MaThuongHieu)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_thuong_hieu");
 
                 entity.Property(e => e.TenThuongHieu)
@@ -544,7 +544,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaSanPham, "IX_VIDEO_ma_san_pham");
 
                 entity.Property(e => e.MaVideo)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("ma_video");
 
                 entity.Property(e => e.MaSanPham)
@@ -611,7 +611,7 @@ namespace UltraStrore.Data
                 entity.HasIndex(e => e.MaSanPham, "IX_YEU_THICH_ma_san_pham");
 
                 entity.Property(e => e.MaYeuThich)
-                    .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                     .HasColumnName("ma_yeu_thich");
 
                 entity.Property(e => e.MaNguoiDung).HasColumnName("ma_nguoi_dung");
