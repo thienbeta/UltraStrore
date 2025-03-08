@@ -74,5 +74,28 @@ namespace UltraStrore.Controllers
 
             return Ok("Xóa bình luận thành công.");
         }
+
+        [HttpPut("approve/{maBinhLuan}")]
+        public async Task<ActionResult> ApproveBinhLuan(int maBinhLuan)
+        {
+            var result = await _commetServices.ApproveBinhLuan(maBinhLuan);
+            if (!result)
+            {
+                return NotFound("Không tìm thấy bình luận để duyệt.");
+            }
+
+            return Ok("Duyệt bình luận thành công.");
+        }
+
+        [HttpPut("unapprove/{maBinhLuan}")]
+        public async Task<ActionResult> UnapproveBinhLuan(int maBinhLuan)
+        {
+            var result = await _commetServices.UnapproveBinhLuan(maBinhLuan);
+            if (!result)
+            {
+                return NotFound("Không tìm thấy bình luận để hủy duyệt.");
+            }
+            return Ok("Hủy duyệt bình luận thành công.");
+        }
     }
 }
