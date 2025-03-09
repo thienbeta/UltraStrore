@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-﻿using Microsoft.EntityFrameworkCore;
+
+using Microsoft.EntityFrameworkCore;
 using UltraStrore.Data;
 using UltraStrore.Models.CreateModels;
 using UltraStrore.Models.EditModels;
@@ -17,12 +17,6 @@ namespace UltraStrore.Services
             _context = context;
         }
 
-        /// <summary>
-        /// Sinh mã người dùng dựa trên vai trò. Giả sử:
-        ///  - VaiTro == 1 => Admin (tiền tố "AD")
-        ///  - VaiTro == 2 => Nhân viên (tiền tố "NV")
-        ///  - Các trường hợp khác => Người dùng (tiền tố "ND")
-        /// </summary>
         private string GenerateMaNguoiDung(int? vaiTro)
         {
             string prefix = "ND";
@@ -221,19 +215,6 @@ namespace UltraStrore.Services
             await _context.SaveChangesAsync();
             return true;
         }
-=======
-﻿using System;
-using System.Collections.Generic;
-using UltraStrore.Data;
-using UltraStrore.Helper;
-using UltraStrore.Models.EditModels;
-using UltraStrore.Models.ViewModels;
-using UltraStrore.Repository;
 
-namespace UltraStrore.Services
-{
-    public class NguoiDungServices
-    {
->>>>>>> 5436636fad539b2105ec948157f758fe5628a2d6
     }
 }

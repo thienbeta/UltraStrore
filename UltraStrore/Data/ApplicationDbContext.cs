@@ -1145,15 +1145,15 @@ namespace UltraStrore.Data
                     MaNguoiDung = "KH001",
                     TaiKhoan = "User",
                     HoTen = "Embo",
-                    NgaySinh = new DateOnly(1999, 5, 19),
+                    NgaySinh = DateTime.Now,
                     Sdt = "0973713274",
                     Cccd = "066099000137",
                     Email = "nguyenquangquyX@gmail.com",
                     DiaChi = "Here",
                     TrangThai = 1,
-                    HinhAnh = "https://safebooru.org//samples/3406/sample_a1935b4ae3f6684ef51e29de9fcbe0cabe608620.jpg?3543495",
+                    HinhAnh = null,
                     MatKhau = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
-                    NgayTao = DateOnly.FromDateTime(DateTime.Now),
+                    NgayTao = DateTime.Now,
                     VaiTro = 0,
                 });
 

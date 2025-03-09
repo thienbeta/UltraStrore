@@ -14,7 +14,7 @@ namespace UltraStrore.Data
         public int? SoLuong { get; set; }
         public double? TongGia { get; set; }
         public bool? TrangThai { get; set; }
-
+        public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }
         public virtual ICollection<ChiTietComBo> ChiTietComBos { get; set; }
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
        
