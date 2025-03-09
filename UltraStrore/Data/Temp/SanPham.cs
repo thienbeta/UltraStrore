@@ -8,7 +8,8 @@ namespace UltraStrore.Data.Temp
         public string ID { get; set; }
         public string Name { get; set; }
         public int MaThuongHieu { get; set; }
-        public int LoaiSanPham { get; set; }
+        public int LoaiSanPham { get; set; } 
+
         public string? KichThuoc { get; set; }
         public int SoLuong { get; set; }
         public int DonGia { get; set; }

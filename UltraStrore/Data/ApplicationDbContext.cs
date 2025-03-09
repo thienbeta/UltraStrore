@@ -426,17 +426,15 @@ namespace UltraStrore.Data
                     .HasMaxLength(100)
                     .HasColumnName("email");
 
-                entity.Property(e => e.HinhAnh)
-                    .HasMaxLength(100)
-                    .HasColumnName("hinh_anh");
 
                 entity.Property(e => e.HoTen)
                     .HasMaxLength(100)
                     .HasColumnName("ho_ten");
 
                 entity.Property(e => e.MatKhau)
-                    .HasMaxLength(50)
-                    .HasColumnName("mat_khau");
+                      .HasColumnType("nvarchar(max)")
+                      .HasColumnName("mat_khau");
+
 
                 entity.Property(e => e.MoTa)
                     .HasMaxLength(255)

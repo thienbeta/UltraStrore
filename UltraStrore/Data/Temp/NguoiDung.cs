@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace UltraStrore.Data
+namespace UltraStrore.Data.Temp
 {
-    public partial class NguoiDung
+    public class NguoiDung
     {
+        [Key]
         public string? MaNguoiDung { get; set; }
         public string? HoTen { get; set; }
         public DateTime? NgaySinh { get; set; }
@@ -16,15 +16,10 @@ namespace UltraStrore.Data
         public string? MatKhau { get; set; }
         public int? VaiTro { get; set; }
         public int? TrangThai { get; set; }
-        public byte[]? HinhAnh { get; set; }
+        public string? HinhAnh { get; set; }
         public DateTime? NgayTao { get; set; }
         public string? MoTa { get; set; }
         public int? CancelConunt { get; set; }
         public DateTime? LockoutEndDate { get; set; }
-
-        public virtual ICollection<DanhSachDiaChi> DanhSachDiaChis { get; set; }
-        public virtual ICollection<DonHang> DonHangMaNguoiDungNavigations { get; set; }
-        public virtual ICollection<DonHang> DonHangMaNhanVienNavigations { get; set; }
-        public virtual ICollection<GioHang> GioHangs { get; set; }
     }
 }

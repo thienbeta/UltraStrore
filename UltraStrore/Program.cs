@@ -18,6 +18,8 @@ namespace UltraStrore
             builder.Services.AddScoped<IGeminiServices, GeminiServices>();
             builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddScoped<ISanPhamServices, SanPhamServices>();
+            builder.Services.AddScoped<INguoiDungServices, NguoiDungServices>();
+            builder.Services.AddScoped<IDanhSachDiaChiServices, DanhSachDiaChiServices>();
             builder.Services.AddScoped<ICommetServices, CommetServices>();
             builder.Services.AddSingleton(resolver =>
                 resolver.GetRequiredService<IOptions<GeminiSettings>>().Value);
