@@ -12,8 +12,8 @@ using UltraStrore.Data;
 namespace UltraStrore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250307083957_sdfsdf")]
-    partial class sdfsdf
+    [Migration("20250308150639_sdhjksdfhjksdf")]
+    partial class sdhjksdfhjksdf
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,10 +38,10 @@ namespace UltraStrore.Migrations
                         .HasColumnType("float")
                         .HasColumnName("danh_gia");
 
-                    b.Property<int?>("MaNguoiDung")
+                    b.Property<string>("MaNguoiDung")
                         .HasMaxLength(10)
                         .IsUnicode(false)
-                        .HasColumnType("int")
+                        .HasColumnType("varchar(10)")
                         .HasColumnName("ma_nguoi_dung");
 
                     b.Property<string>("MaSanPham")
@@ -49,6 +49,9 @@ namespace UltraStrore.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(20)")
                         .HasColumnName("ma_san_pham");
+
+                    b.Property<DateTime?>("NgayBinhLuan")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NoiDungBinhLuan")
                         .HasMaxLength(255)
@@ -256,8 +259,8 @@ namespace UltraStrore.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("ho_ten");
 
-                    b.Property<int?>("MaNguoiDung")
-                        .HasColumnType("int")
+                    b.Property<string>("MaNguoiDung")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("ma_nguoi_dung");
 
                     b.Property<string>("MoTa")
@@ -301,12 +304,12 @@ namespace UltraStrore.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("ly_do_huy");
 
-                    b.Property<int?>("MaNguoiDung")
-                        .HasColumnType("int")
+                    b.Property<string>("MaNguoiDung")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("ma_nguoi_dung");
 
-                    b.Property<int?>("MaNhanVien")
-                        .HasColumnType("int")
+                    b.Property<string>("MaNhanVien")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("ma_nhan_vien");
 
                     b.Property<DateTime?>("NgayDat")
@@ -352,8 +355,8 @@ namespace UltraStrore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaGioHang"));
 
-                    b.Property<int?>("MaNguoiDung")
-                        .HasColumnType("int")
+                    b.Property<string>("MaNguoiDung")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("ma_nguoi_dung");
 
                     b.HasKey("MaGioHang")
@@ -420,12 +423,13 @@ namespace UltraStrore.Migrations
 
             modelBuilder.Entity("UltraStrore.Data.NguoiDung", b =>
                 {
-                    b.Property<int>("MaNguoiDung")
+                    b.Property<string>("MaNguoiDung")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("ma_nguoi_dung");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaNguoiDung"));
+                    b.Property<int?>("CancelConunt")
+                        .HasColumnType("int");
 
                     b.Property<string>("Cccd")
                         .HasMaxLength(20)
@@ -451,6 +455,9 @@ namespace UltraStrore.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("ho_ten");
+
+                    b.Property<DateTime?>("LockoutEndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MatKhau")
                         .HasMaxLength(50)
@@ -481,6 +488,9 @@ namespace UltraStrore.Migrations
                     b.Property<int?>("TrangThai")
                         .HasColumnType("int")
                         .HasColumnName("trang_thai");
+
+                    b.Property<int?>("VaiTro")
+                        .HasColumnType("int");
 
                     b.HasKey("MaNguoiDung")
                         .HasName("PK__NGUOI_DU__19C32CF72B9CA41E");
@@ -661,12 +671,12 @@ namespace UltraStrore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaYeuThich"));
 
-                    b.Property<int?>("MaNguoiDung")
-                        .HasColumnType("int")
+                    b.Property<string>("MaNguoiDung")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("ma_nguoi_dung");
 
-                    b.Property<int?>("MaNguoiDungNavigationMaNguoiDung")
-                        .HasColumnType("int");
+                    b.Property<string>("MaNguoiDungNavigationMaNguoiDung")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MaSanPham")
                         .HasMaxLength(20)

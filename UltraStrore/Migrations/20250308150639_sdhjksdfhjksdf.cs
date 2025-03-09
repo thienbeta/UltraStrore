@@ -1,19 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace UltraStrore.Migrations
 {
     /// <inheritdoc />
-    public partial class sdkjhfsdjkf : Migration
+    public partial class sdhjksdfhjksdf : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "VaiTro",
-                table: "NGUOI_DUNG",
-                type: "int",
+            migrationBuilder.AddColumn<DateTime>(
+                name: "NgayBinhLuan",
+                table: "BINH_LUAN",
+                type: "datetime2",
                 nullable: true);
         }
 
@@ -21,8 +22,8 @@ namespace UltraStrore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "VaiTro",
-                table: "NGUOI_DUNG");
+                name: "NgayBinhLuan",
+                table: "BINH_LUAN");
         }
     }
 }

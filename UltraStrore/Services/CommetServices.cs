@@ -29,7 +29,8 @@ namespace UltraStrore.Services
                     NoiDungBinhLuan = bl.NoiDungBinhLuan,
                     SoTimBinhLuan = bl.SoTimBinhLuan,
                     DanhGia = bl.DanhGia,
-                    TrangThai = bl.TrangThai
+                    TrangThai = bl.TrangThai,
+                    NgayBinhLuan = bl.NgayBinhLuan
                 })
                 .ToListAsync();
 
@@ -48,16 +49,14 @@ namespace UltraStrore.Services
             var existingBinhLuan = await _context.BinhLuans
                 .FirstOrDefaultAsync(bl => bl.MaBinhLuan == maBinhLuan);
 
-            if (existingBinhLuan == null)
-            {
-                return null;
-            }
+          
 
             existingBinhLuan.MaSanPham = binhLuan.MaSanPham;
             existingBinhLuan.MaNguoiDung = binhLuan.MaNguoiDung;
             existingBinhLuan.NoiDungBinhLuan = binhLuan.NoiDungBinhLuan;
             existingBinhLuan.SoTimBinhLuan = binhLuan.SoTimBinhLuan;
             existingBinhLuan.DanhGia = binhLuan.DanhGia;
+            existingBinhLuan.NgayBinhLuan = binhLuan.NgayBinhLuan;
 
             await _context.SaveChangesAsync(); // Lưu thay đổi
             return existingBinhLuan;
@@ -75,6 +74,38 @@ namespace UltraStrore.Services
 
             _context.BinhLuans.Remove(binhLuanToRemove);
             await _context.SaveChangesAsync(); // Lưu thay đổi
+            return true;
+        }
+
+
+        public async Task<bool> ApproveBinhLuan(int maBinhLuan)
+        {
+            var binhLuan = await _context.BinhLuans
+                .FirstOrDefaultAsync(bl => bl.MaBinhLuan == maBinhLuan);
+
+            if (binhLuan == null)
+            {
+                return false;
+            }
+
+            binhLuan.TrangThai = 1; // Cập nhật trạng thái thành "Đã Duyệt"
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        public async Task<bool> UnapproveBinhLuan(int maBinhLuan)
+        {
+            var binhLuan = await _context.BinhLuans
+                .FirstOrDefaultAsync(bl => bl.MaBinhLuan == maBinhLuan);
+
+            if (binhLuan == null)
+            {
+                return false;
+            }
+
+            binhLuan.TrangThai = 0; // Cập nhật trạng thái thành "Chưa Duyệt"
+            await _context.SaveChangesAsync();
             return true;
         }
     }
