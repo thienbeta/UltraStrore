@@ -17,6 +17,5 @@ namespace UltraStrore.Data
         public string? DiaChi { get; set; }
 
         public virtual NguoiDung? MaNguoiDungNavigation { get; set; }
-        public virtual NguoiDung? MaNhanVienNavigation { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace UltraStrore.Services
         public async Task<GioHangView> GioHangViews(string? MaKhachHang)
         {
             GioHangView GioHangView = new GioHangView();
-            var GioHang =_context.GioHangs.Where(g=>g.MaNguoiDung==MaKhachHang).FirstOrDefault();
+            var GioHang = _context.GioHangs.Where(g => g.MaNguoiDung == MaKhachHang).FirstOrDefault();
             if (GioHang != null)
             {
                 var CTGH = _context.ChiTietGioHangs.Where(g => g.MaGioHang == GioHang.MaGioHang).ToList();
@@ -38,14 +38,15 @@ namespace UltraStrore.Services
                     ChiTietGioHangSanPhamView spview = new ChiTietGioHangSanPhamView();
                     spview.IDSanPham = item.MaSanPham;
                     spview.TenSanPham = sp.TenSanPham;
-                    spview.TienSanPham = sp.Gia * item.SoLuong??0;
+                    spview.TienSanPham = sp.Gia * item.SoLuong ?? 0;
                     spview.MauSac = sp.MaSanPham.Split('_')[1];
                     spview.KickThuoc = sp.MaSanPham.Split('_')[2];
-                    spview.SoLuong = item.SoLuong??0;
+                    spview.SoLuong = item.SoLuong ?? 0;
                     DetailSanPhamView.Add(spview);
                 }
                 GioHangView.CTGHSanPhamView = DetailSanPhamView;
-                GioHangView.IDNguoiDung = MaKhachHang;
+                if(MaKhachHang!=null)
+                    GioHangView.IDNguoiDung = MaKhachHang;
                 GioHangView.ID = GioHang.MaGioHang;
                 return GioHangView;
             }
@@ -59,7 +60,7 @@ namespace UltraStrore.Services
             {
                 string MaSanPham = info.IDSanPham.Trim() + "_" + info.MauSac.Trim() + "_" + info.KichThuoc.Trim();
                 var SanPham = _context.SanPhams.Where(g => g.MaSanPham == MaSanPham).FirstOrDefault();
-                var item = KhachHangaaa.Where(g => g.MaNguoiDung == info.IDNguoiDung).FirstOrDefault();
+                var item = _context.NguoiDungs.Where(g => g.MaNguoiDung == info.IDNguoiDung).FirstOrDefault();
                 if (item == null)
                 {
                     response.Result = "Lỗi";
@@ -82,7 +83,7 @@ namespace UltraStrore.Services
                     {
                         IDGioHang = GioHangCustomer.MaGioHang;
                         var Checked = _context.ChiTietGioHangs.Where(g => g.MaGioHang == IDGioHang).ToList();
-                        if(Checked.Count > 0)
+                        if (Checked.Count > 0)
                         {
                             foreach (var check in Checked)
                             {
@@ -94,8 +95,8 @@ namespace UltraStrore.Services
                                     return response;
                                 }
                             }
-                        }                     
-                    }                           
+                        }
+                    }
                     var MaxIDCTGH = _context.ChiTietGioHangs.OrderByDescending(g => g.MaCtgh).Select(g => g.MaCtgh).FirstOrDefault();
                     MaxIDCTGH++;
                     ChiTietGioHang ctgh = new ChiTietGioHang()
@@ -118,7 +119,7 @@ namespace UltraStrore.Services
                 response.Result = $"Lỗi: {ex.Message}";
             }
             return response;
-        }    
+        }
     }
 }
 

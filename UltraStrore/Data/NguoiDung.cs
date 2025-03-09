@@ -7,7 +7,7 @@ namespace UltraStrore.Data
     {
         public string? MaNguoiDung { get; set; }
         public string? HoTen { get; set; }
-        public DateTime? NgaySinh { get; set; }
+        public DateOnly? NgaySinh { get; set; }
         public string? Sdt { get; set; }
         public string? Cccd { get; set; }
         public string? Email { get; set; }
@@ -24,7 +24,6 @@ namespace UltraStrore.Data
 
         public virtual ICollection<DanhSachDiaChi> DanhSachDiaChis { get; set; }
         public virtual ICollection<DonHang> DonHangMaNguoiDungNavigations { get; set; }
-        public virtual ICollection<DonHang> DonHangMaNhanVienNavigations { get; set; }
         public virtual ICollection<GioHang> GioHangs { get; set; }
     }
 }
