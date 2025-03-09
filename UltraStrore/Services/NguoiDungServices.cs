@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Microsoft.EntityFrameworkCore;
 using UltraStrore.Data;
 using UltraStrore.Models.CreateModels;
@@ -220,5 +221,19 @@ namespace UltraStrore.Services
             await _context.SaveChangesAsync();
             return true;
         }
+=======
+﻿using System;
+using System.Collections.Generic;
+using UltraStrore.Data;
+using UltraStrore.Helper;
+using UltraStrore.Models.EditModels;
+using UltraStrore.Models.ViewModels;
+using UltraStrore.Repository;
+
+namespace UltraStrore.Services
+{
+    public class NguoiDungServices
+    {
+>>>>>>> 5436636fad539b2105ec948157f758fe5628a2d6
     }
 }
