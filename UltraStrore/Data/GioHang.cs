@@ -7,7 +7,7 @@ namespace UltraStrore.Data
     {
 
         public int MaGioHang { get; set; }
-        public int? MaNguoiDung { get; set; }
+        public string? MaNguoiDung { get; set; }
 
         public virtual NguoiDung? MaNguoiDungNavigation { get; set; }
         public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }

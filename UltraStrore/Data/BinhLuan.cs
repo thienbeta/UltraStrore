@@ -6,7 +6,6 @@ namespace UltraStrore.Data
     public partial class BinhLuan
     {
 
-
         public int MaBinhLuan { get; set; }
         public string? MaSanPham { get; set; }
         public int? MaNguoiDung { get; set; }

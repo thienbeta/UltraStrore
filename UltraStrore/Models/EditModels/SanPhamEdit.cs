@@ -10,7 +10,8 @@ namespace UltraStrore.Models.EditModels
         public int? LoaiSanPham { get; set; }
         public string? MoTa { get; set; }
         public string? MauSac { get; set; }
+        public string? ChatLieu { get; set; }
         public List<SanPhamEditDetail>? Details { get; set; }
-        public List<HinhAnh>? HinhAnhs { get; set; }
+        public List<byte[]>? HinhAnhs { get; set; }
     }
 }
